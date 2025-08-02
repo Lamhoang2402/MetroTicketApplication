@@ -1,0 +1,135 @@
+﻿<Window x:Class="Presentation.TicketCheckoutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation"
+        mc:Ignorable="d"
+        Title="Ticket Management"
+        Width="850"
+        MinHeight="480"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterScreen"
+        Background="#f0f0f0"
+        Loaded="Window_Loaded">
+
+    <Window.Resources>
+
+        <Style x:Key="SectionLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="Foreground" Value="#2c3e50"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+
+        <Style x:Key="FormLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#333"/>
+            <Setter Property="Margin" Value="0,5,0,0"/>
+        </Style>
+
+        <Style x:Key="InputBoxStyle" TargetType="Control">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="26"/>
+            <Setter Property="Padding" Value="6,2"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#ccc"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="8,4,0,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Height="45" Background="White" LastChildFill="False" VerticalAlignment="Top" Margin="0,0,0,10">
+            <Label Content="Ticket Management" Style="{StaticResource SectionLabelStyle}" Margin="20,10,0,0"/>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="0,5,10,0">
+                <Image Source="C:\Users\HP\OneDrive - Office 365 A1\Desktop\MetroTicketApplication\MetroTicketApplication\Presentation\assets\businessman.png" Width="32" Height="32" Margin="0,0,8,0"/>
+                <Label Content="Welcome, Staff!" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DockPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="260"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <Label Content="Fill Ticket Information" Style="{StaticResource SectionLabelStyle}"/>
+
+                    <Label Content="Ticket Type:" Style="{StaticResource FormLabelStyle}"/>
+                    <ComboBox x:Name="cmbTicketType" Style="{StaticResource InputBoxStyle}"/>
+
+                    <Label Content="Customer Type:" Style="{StaticResource FormLabelStyle}"/>
+                    <ComboBox x:Name="cmbCustomerType" Style="{StaticResource InputBoxStyle}"/>
+
+                    <Label Content="Total Price: $0.00" Style="{StaticResource FormLabelStyle}" FontSize="18" FontWeight="Bold" Margin="0,20,0,10" x:Name="lblTotalPrice"/>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="btnGenerateTicket" Content="Generate Ticket" Background="#2ecc71" Style="{StaticResource PrimaryButtonStyle}" Click="btnGenerateTicket_Click" Margin="0"/>
+                        <Button x:Name="btnCheckout" Content="Checkout" Background="#3498db" Style="{StaticResource PrimaryButtonStyle}" Click="btnCheckout_Click" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+
+            <StackPanel Grid.Column="2">
+                <Label Content="Ticket List" Style="{StaticResource SectionLabelStyle}"/>
+                <DataGrid x:Name="dtgAllTicket"
+                          AutoGenerateColumns="False"
+                          Height="320"
+                          HorizontalAlignment="Stretch"
+                          SelectionChanged="dtgAllTicket_SelectionChanged"
+                          HeadersVisibility="Column"
+                          CanUserAddRows="False"
+                          Margin="0,0,0,10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Ticket Price ID" Binding="{Binding TicketPriceId}" Width="*"/>
+                        <DataGridTextColumn Header="Ticket Type Name" Binding="{Binding TicketType.TicketTypeName}" Width="*"/>
+                        <DataGridTextColumn Header="Customer Type Name" Binding="{Binding CustomerType.TypeName}" Width="*"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*"/>
+                    </DataGrid.Columns>
+
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#2ecc71"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Padding" Value="6"/>
+                        </Style>
+                    </DataGrid.Resources>
+                </DataGrid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,48 @@
+﻿<Window x:Class="Presentation.PaymentConfirmationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation"
+        mc:Ignorable="d"
+        Title="Payment Confirmation"
+        Height="450" Width="400"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <StackPanel>
+            <Label Content="Payment Information" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <Label Content="Bank:" FontWeight="SemiBold" Width="120"/>
+                <Label x:Name="lblBank" FontWeight="Normal"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <Label Content="Card Number:" FontWeight="SemiBold" Width="120"/>
+                <Label x:Name="lblCardNumber" FontWeight="Normal"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <Label Content="Card Holder Name:" FontWeight="SemiBold" Width="120"/>
+                <Label x:Name="lblCardHolderName" FontWeight="Normal"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <Label Content="Expiration Date:" FontWeight="SemiBold" Width="120"/>
+                <Label x:Name="lblExpirationDate" FontWeight="Normal"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <Label Content="OTP Code:" FontWeight="SemiBold" Width="120"/>
+                <Label x:Name="lblOtp" FontWeight="Normal"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,20">
+                <Label Content="Total Price:" FontWeight="Bold" Width="120"/>
+                <Label x:Name="lblPrice" FontWeight="Bold" Foreground="Red"/>
+            </StackPanel>
+
+            <Button Content="Confirm Payment" Margin="0,20,0,0" Height="30" Click="Confirm_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
